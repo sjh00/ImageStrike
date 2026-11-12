@@ -1,0 +1,35 @@
+[project]
+name = "imagestrike"
+version = "0.3.0"
+description = "CTF 图片隐写综合利用工具（PyQt5）"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "GPL-3.0" }
+dependencies = [
+    "pyqt5==5.15.11",
+    # PyQt5 5.15.12+ 依赖 pyqt5-qt5>=5.15.19，而 5.15.19 不再提供 Windows wheel，
+    # 因此 Windows 上必须把 pyqt5-qt5 固定到 5.15.2。
+    "pyqt5-qt5==5.15.2; sys_platform == 'win32' and platform_machine == 'AMD64'",
+    "pillow>=10.0",
+    "numpy>=1.24",
+    "cryptography>=41.0",
+    "zxing-cpp>=2.2",
+]
+
+[project.optional-dependencies]
+# 更完整的 EXIF/IPTC/XMP 读取（未安装时自动回退到 Pillow 实现）
+exiv = ["pyexiv2>=2.15"]
+# 备用二维码识别引擎（zxing-cpp 认不出时兜底）
+qr = ["pyzbar>=0.1.9"]
+# 全部可选依赖
+full = ["pyexiv2>=2.15", "pyzbar>=0.1.9"]
+
+[dependency-groups]
+dev = ["pytest>=8.0"]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

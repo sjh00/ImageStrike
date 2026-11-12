@@ -1,0 +1,15 @@
+# 虚拟环境与缓存
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# 运行产物（imgs/ 下的原始截图素材保留）
+imgs/result*.png
+imgs/result*.jpg
+imgs/gif/
+imgs/foremost_out/
+imgs/steghide_out/
+imgs/stegpy_out/
+imgs/f5_out.txt
+cache.txt
